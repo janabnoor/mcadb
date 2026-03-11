@@ -1,0 +1,701 @@
+/* ================================================================
+   Nehru College of Management – Faculty Page
+   Design: Luxury Academic Dark-Gradient + Real Glassmorphism
+   ================================================================ */
+
+/* ── VARIABLES ── */
+:root {
+  --navy-deep:   #020d1f;
+  --navy-mid:    #061830;
+  --navy-rich:   #0b2558;
+  --blue-bright: #1a5cbf;
+  --gold:        #c8a84b;
+  --gold-light:  #f0d98c;
+  --gold-pale:   rgba(200,168,75,0.15);
+  --gold-glow:   rgba(200,168,75,0.4);
+  --gold-ring:   rgba(200,168,75,0.7);
+  --white:       #ffffff;
+  --text-white:  rgba(255,255,255,0.92);
+  --text-dim:    rgba(255,255,255,0.6);
+  /* GLASS */
+  --glass:       rgba(255,255,255,0.07);
+  --glass-mid:   rgba(255,255,255,0.11);
+  --glass-heavy: rgba(255,255,255,0.18);
+  --glass-border:rgba(255,255,255,0.18);
+  --glass-border-gold: rgba(200,168,75,0.4);
+  /* Shadows */
+  --shadow-deep: 0 20px 60px rgba(0,0,0,0.5);
+  --shadow-gold: 0 8px 32px rgba(200,168,75,0.22);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img  { display: block; }
+
+/* ── BODY – rich deep-navy gradient canvas ── */
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: linear-gradient(135deg,
+    #020d1f 0%,
+    #061830 25%,
+    #0a1f45 55%,
+    #04122b 80%,
+    #020d1f 100%
+  );
+  min-height: 100vh;
+  color: var(--text-white);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── ANIMATED ORB BLOBS in background ── */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: orbDrift 18s ease-in-out infinite alternate;
+}
+.orb1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(26,92,191,0.7), transparent 70%);
+  top: -120px; left: -80px;
+  animation-duration: 20s;
+}
+.orb2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(200,168,75,0.5), transparent 70%);
+  top: 10%; right: -100px;
+  animation-duration: 15s; animation-delay: -5s;
+}
+.orb3 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(11,37,88,0.9), transparent 70%);
+  bottom: 30%; left: 20%;
+  animation-duration: 22s; animation-delay: -8s;
+}
+.orb4 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(200,168,75,0.35), transparent 70%);
+  bottom: 10%; right: 15%;
+  animation-duration: 17s; animation-delay: -3s;
+}
+@keyframes orbDrift {
+  0%   { transform: translate(0,   0)   scale(1);    }
+  50%  { transform: translate(40px,30px) scale(1.1); }
+  100% { transform: translate(-20px,50px) scale(0.95); }
+}
+
+/* ═══════════════════════════════════════
+   HEADER  – frosted glass panel
+═══════════════════════════════════════ */
+.site-header {
+  position: relative;
+  z-index: 20;
+}
+
+.header-glass {
+  background: rgba(6, 18, 46, 0.65);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-bottom: 1px solid rgba(200,168,75,0.2);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.5),
+              inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 40px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.logo-wrap { flex: 0 0 auto; }
+
+.logo-svg {
+  filter: drop-shadow(0 4px 14px rgba(200,168,75,0.35));
+  transition: filter 0.3s;
+}
+.logo-svg:hover {
+  filter: drop-shadow(0 4px 24px rgba(200,168,75,0.65));
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.college-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(200,168,75,0.3);
+}
+
+.college-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: var(--gold-light);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.affil-block {
+  margin-top: 8px;
+}
+.affil-block p {
+  font-size: clamp(0.62rem, 1.3vw, 0.74rem);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+.city {
+  color: rgba(255,255,255,0.8) !important;
+  margin-top: 3px;
+}
+
+/* Gold + Blue GLITTERING rule */
+.header-rule {
+  height: 5px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg,
+    var(--navy-deep) 0%,
+    #1a5cbf 18%,
+    #4a8fff 28%,
+    var(--gold) 42%,
+    #fff8c0 50%,
+    var(--gold) 58%,
+    #4a8fff 72%,
+    #1a5cbf 82%,
+    var(--navy-deep) 100%
+  );
+  box-shadow:
+    0 0 8px rgba(200,168,75,0.8),
+    0 0 18px rgba(200,168,75,0.4),
+    0 0 4px rgba(74,143,255,0.6);
+  animation: rulePulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes rulePulse {
+  0%   { box-shadow: 0 0 8px rgba(200,168,75,0.8),  0 0 20px rgba(200,168,75,0.4), 0 0 5px rgba(74,143,255,0.6); }
+  100% { box-shadow: 0 0 16px rgba(200,168,75,1),   0 0 40px rgba(200,168,75,0.7), 0 0 12px rgba(74,143,255,0.9); }
+}
+
+/* Travelling sparkle beam 1 */
+.shimmer-bar {
+  position: absolute;
+  top: 0; left: -80%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,220,0.3) 20%,
+    rgba(255,255,255,0.95) 50%,
+    rgba(255,255,220,0.3) 80%,
+    transparent 100%);
+  animation: glitterSweep 1.8s linear infinite;
+}
+/* Second offset beam */
+.shimmer-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: inherit;
+  animation: glitterSweep2 2.6s linear infinite;
+  opacity: 0.55;
+}
+@keyframes glitterSweep {
+  0%   { left: -80%; }
+  100% { left: 140%; }
+}
+@keyframes glitterSweep2 {
+  0%   { transform: translateX(-200%); }
+  100% { transform: translateX(400%); }
+}
+
+/* ═══════════════════════════════════════
+   DEPT BANNER
+═══════════════════════════════════════ */
+.dept-banner {
+  text-align: center;
+  padding: 52px 20px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.dept-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.dept-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 40px rgba(200,168,75,0.25);
+}
+
+/* Ornamental divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px auto;
+  width: 260px;
+}
+.orn-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,168,75,0.6), transparent);
+}
+
+.dept-tagline {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════
+   FACULTY GRID
+═══════════════════════════════════════ */
+.faculty-section {
+  padding: 40px 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 20px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 30px;
+  justify-items: center;
+}
+
+/* ── FACULTY ITEM: circle + label only ── */
+.faculty-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.94);
+  animation: itemReveal 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+@keyframes itemReveal {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Outer wrapper that holds glow + ring */
+.circle-outer {
+  position: relative;
+  width: 148px;
+  height: 148px;
+}
+
+/* Soft ambient glow behind the circle */
+.circle-pulse {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,75,0.22) 0%, transparent 70%);
+  animation: pulseBeat 3s ease-in-out infinite;
+}
+@keyframes pulseBeat {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%       { transform: scale(1.12); opacity: 1;   }
+}
+
+/* Gold GLITTERING spinning-ring border */
+.circle-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 4px;
+  /* Rotating conic gradient creates spin */
+  background: conic-gradient(
+    #7a5800 0deg,
+    #c8a84b 30deg,
+    #fff8c0 60deg,
+    #f0d98c 90deg,
+    #ffffff 110deg,
+    #f0d98c 130deg,
+    #c8a84b 160deg,
+    #7a5800 190deg,
+    #c8a84b 220deg,
+    #fff8c0 250deg,
+    #ffffff 270deg,
+    #f0d98c 300deg,
+    #c8a84b 330deg,
+    #7a5800 360deg
+  );
+  animation: ringSpin 3s linear infinite, ringGlow 2s ease-in-out infinite alternate;
+  box-shadow:
+    0 0 0 1px rgba(200,168,75,0.3),
+    0 0 14px rgba(200,168,75,0.55),
+    0 0 30px rgba(200,168,75,0.25),
+    inset 0 0 8px rgba(200,168,75,0.1);
+}
+@keyframes ringSpin {
+  to { filter: hue-rotate(20deg) brightness(1.15); }
+}
+@keyframes ringGlow {
+  0%   {
+    box-shadow:
+      0 0 0 1px rgba(200,168,75,0.3),
+      0 0 14px rgba(200,168,75,0.55),
+      0 0 28px rgba(200,168,75,0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(255,248,192,0.6),
+      0 0 22px rgba(255,248,192,0.9),
+      0 0 50px rgba(200,168,75,0.55),
+      0 0 80px rgba(200,168,75,0.2);
+  }
+}
+
+/* On hover: faster spin + bigger burst */
+.faculty-item:hover .circle-border {
+  animation: ringSpinFast 1s linear infinite, ringGlowHover 0.8s ease-in-out infinite alternate;
+}
+@keyframes ringSpinFast {
+  to { filter: hue-rotate(30deg) brightness(1.25); }
+}
+@keyframes ringGlowHover {
+  0%   {
+    box-shadow:
+      0 0 0 2px rgba(255,248,192,0.5),
+      0 0 28px rgba(255,230,80,0.8),
+      0 0 55px rgba(200,168,75,0.5);
+  }
+  100% {
+    box-shadow:
+      0 0 0 3px rgba(255,255,200,0.9),
+      0 0 45px rgba(255,240,100,1),
+      0 0 90px rgba(200,168,75,0.7),
+      0 0 130px rgba(200,168,75,0.3);
+  }
+}
+
+
+
+/* The actual circular photo */
+.circle-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(140deg, #0d2550 0%, #071730 100%);
+  border: 2px solid rgba(6,24,60,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Hover lift on item */
+.faculty-item:hover .circle-outer {
+  transform: translateY(-6px);
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ── Label block (NO card/rectangle) ── */
+.faculty-label {
+  text-align: center;
+}
+.f-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+.f-desig {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(200,168,75,0.4);
+}
+
+/* ═══════════════════════════════════════
+   VISION & MISSION  –  TRUE glassmorphism
+═══════════════════════════════════════ */
+.vm-section {
+  padding: 60px 30px 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* The glass card — GLITTERING gold border */
+.vm-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 40px 36px;
+  overflow: hidden;
+  /* VISIBLE glassmorphism */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  /* Animated glitter border via outline + pseudo */
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.2),
+    0 0 0 1.5px rgba(200,168,75,0.5),
+    0 0 18px rgba(200,168,75,0.3),
+    0 0 40px rgba(200,168,75,0.12);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: itemReveal 0.7s cubic-bezier(0.22,1,0.36,1) forwards,
+             cardBorderGlitter 2.5s ease-in-out infinite alternate;
+  animation-delay: calc(0.7s + var(--vi) * 0.18s), calc(var(--vi) * 0.6s);
+  transition: transform 0.4s;
+}
+@keyframes cardBorderGlitter {
+  0% {
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      0 0 0 1.5px rgba(200,168,75,0.5),
+      0 0 14px rgba(200,168,75,0.3),
+      0 0 30px rgba(200,168,75,0.1);
+  }
+  50% {
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 0 0 2px rgba(255,248,192,0.9),
+      0 0 28px rgba(255,230,80,0.7),
+      0 0 60px rgba(200,168,75,0.35);
+  }
+  100% {
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      0 0 0 1.5px rgba(200,168,75,0.6),
+      0 0 18px rgba(200,168,75,0.45),
+      0 0 45px rgba(200,168,75,0.15);
+  }
+}
+
+/* Travelling sparkle beam along the card border */
+.vm-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 21px;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 70deg,
+    rgba(255,255,200,0.7) 88deg,
+    rgba(255,255,255,0.95) 90deg,
+    rgba(255,255,200,0.7) 92deg,
+    transparent 110deg,
+    transparent 360deg
+  );
+  animation: borderSpark 3s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  padding: 1.5px;
+}
+@keyframes borderSpark {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.vm-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 28px 65px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 0 0 2px rgba(255,248,192,0.7),
+    0 0 45px rgba(255,230,80,0.5),
+    0 0 80px rgba(200,168,75,0.25);
+}
+
+/* Top gold accent line */
+.vm-top-accent {
+  position: absolute;
+  top: 0; left: 30px; right: 30px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+/* Corner radiance glow */
+.vm-glow-corner {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(200,168,75,0.14) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.vm-icon {
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 8px rgba(200,168,75,0.4));
+}
+
+.vm-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(200,168,75,0.2);
+}
+
+.vm-rule {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 12px 0 18px;
+  box-shadow: 0 0 10px rgba(200,168,75,0.5);
+}
+
+.vm-text {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 28px 24px;
+  background: rgba(2,13,31,0.8);
+  backdrop-filter: blur(10px);
+}
+.footer-line {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(200,168,75,0.4), transparent);
+  margin-bottom: 18px;
+}
+.site-footer p {
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+
+/* Tablet ≤ 900 */
+@media (max-width: 900px) {
+  .header-inner { padding: 16px 24px; }
+  .college-name { font-size: 1.35rem; }
+  .circle-outer { width: 128px; height: 128px; }
+  .vm-grid { gap: 20px; }
+  .vm-card { padding: 30px 26px; }
+}
+
+/* Phablet ≤ 700 */
+@media (max-width: 700px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 18px;
+  }
+  .logo-wrap { order: 0; }
+  .header-center { order: 1; flex: 0 0 100%; }
+
+  .vm-grid { grid-template-columns: 1fr; }
+}
+
+/* Mobile ≤ 480 — 2 columns */
+@media (max-width: 480px) {
+  .faculty-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 14px;
+    padding: 0 16px;
+  }
+  .circle-outer { width: 110px; height: 110px; }
+  .f-name  { font-size: 0.88rem; }
+  .f-desig { font-size: 0.6rem; }
+  .dept-title { font-size: 1.6rem; }
+  .vm-section { padding: 40px 16px 30px; }
+  .vm-card  { padding: 24px 20px; }
+  .vm-heading { font-size: 1.4rem; }
+  .vm-text  { font-size: 0.82rem; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .faculty-item, .vm-card { animation: none; opacity: 1; transform: none; }
+  .orb, .circle-pulse, .shimmer-bar { animation: none; }
+}
